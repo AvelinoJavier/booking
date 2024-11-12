@@ -23,15 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_11423609cbd94686b649cb8ea73e0cb2 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_1e4ea417867f46b7b3bca60c614b860e }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_a42501ce93f741b5b7ee1dc6674f3c53 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_747ea7a5c9ee4d50909571ec7e3235fb }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
-        context: .
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_11423609cbd94686b649cb8ea73e0cb2 }}/mcr.microsoft.com/appsvc/staticsite:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_a42501ce93f741b5b7ee1dc6674f3c53 }}/twgroup.booking:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,5 +47,5 @@ jobs:
       with:
         app-name: 'jflorentinbooking'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b1b2181e93414fd78b459a5dcc300775 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_11423609cbd94686b649cb8ea73e0cb2 }}/mcr.microsoft.com/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_64a11680372a4d99ac8bb4fae6f7aac1 }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_a42501ce93f741b5b7ee1dc6674f3c53 }}/twgroup.booking:${{ github.sha }}'
